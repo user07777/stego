@@ -71,11 +71,26 @@ void save(const std::string& path, LPVOID data, DWORD size) {
 }
 
 int main() {
-	std::string path = "C:\\Users\\< user >\\Documents\\estego\\estego.exe";
-	std::string filePath = "C:\\Users\\< user >\\Documents\\reversing-for-everyone.pdf";
-	std::string type = "get";
+	std::string path;
+	std::string filePath;
+	std::string type;
+
+	std::cout << "Enter .exe path:";
+	std::cin >> path;
+	std::cout.flush();
+	std::cin.clear();
+
+	std::cout << "Enter op type (get|set):";
+	std::cin >> type;
+	std::cout.flush();
+	std::cin.clear();
 
 	if (type == "set") {
+		std::cout << "Enter file path:";
+		std::cin >> filePath;
+		std::cout.flush();
+		std::cin.clear();
+
 		std::pair<size_t, std::vector<unsigned char>> fileData = getBin(filePath);
 
 		HANDLE file = CreateFileA(path.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
